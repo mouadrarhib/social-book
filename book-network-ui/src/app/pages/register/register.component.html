@@ -1,34 +1,86 @@
-<div class="container-fluid card login-container">
-  <h3 class="text-center">Create an account</h3>
-  <hr>
-  <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
-    <p *ngFor="let msg of errorMsg">{{msg}}</p>
-  </div>
-  <div class="mb-3">
-    <label for="firstname" class="form-label">Firstname</label>
-    <input [(ngModel)]="registerRequest.firstname" type="text" class="form-control" id="firstname" placeholder="Firstname">
-  </div>
-  <div class="mb-3">
-    <label for="lastname" class="form-label">Lastname</label>
-    <input [(ngModel)]="registerRequest.lastname" type="text" class="form-control" id="lastname" placeholder="Lastname">
-  </div>
-  <div class="mb-3">
-    <label for="login" class="form-label">Email address</label>
-    <input [(ngModel)]="registerRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input [(ngModel)]="registerRequest.password" type="password" class="form-control" id="password" placeholder="Password">
-  </div>
-  <div class="d-flex justify-content-between mb-3">
-    <button (click)="register()" type="button" class="btn btn-primary">
-      <em class="fas fa-sign-in-alt">&nbsp;Create an account</em>
-    </button>
-    <div>
-      Already have an account?&nbsp;
-      <button (click)="login()" type="button" class="btn btn-link">
-        Login
-      </button>
+<div class="register-wrapper">
+  <div class="register-container">
+    <div class="register-content">
+      <h2 class="register-title">Create an account</h2>
+      <p class="register-subtitle">Join the Book Social Network community</p>
+
+      <div class="alert alert-danger animate__animated animate__fadeIn" role="alert" *ngIf="errorMsg.length">
+        <p *ngFor="let msg of errorMsg">{{msg}}</p>
+      </div>
+
+      <form class="register-form">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-icon">
+              <i class="fas fa-user"></i>
+            </span>
+            <input 
+              [(ngModel)]="registerRequest.firstname" 
+              type="text" 
+              name="firstname"
+              class="form-input" 
+              placeholder="First name"
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-icon">
+              <i class="fas fa-user"></i>
+            </span>
+            <input 
+              [(ngModel)]="registerRequest.lastname" 
+              type="text" 
+              name="lastname"
+              class="form-input" 
+              placeholder="Last name"
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-icon">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <input 
+              [(ngModel)]="registerRequest.email" 
+              type="email" 
+              name="email"
+              class="form-input" 
+              placeholder="Email address"
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-icon">
+              <i class="fas fa-lock"></i>
+            </span>
+            <input 
+              [(ngModel)]="registerRequest.password" 
+              type="password" 
+              name="password"
+              class="form-input" 
+              placeholder="Password"
+              required>
+          </div>
+        </div>
+
+        <button (click)="register()" type="submit" class="register-button">
+          <i class="fas fa-user-plus"></i>
+          Create account
+        </button>
+
+        <div class="login-link">
+          <span>Already have an account?</span>
+          <button (click)="login()" type="button" class="login-button">
+            Sign in
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

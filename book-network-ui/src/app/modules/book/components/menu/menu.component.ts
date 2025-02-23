@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+    username = 'mouad';
     ngOnInit(): void {
       const linkColor = document.querySelectorAll('.nav-link');
       linkColor.forEach(link => {

@@ -1,3 +1,299 @@
-i {
+// Variables
+$primary: #2563eb;
+$primary-dark: #1d4ed8;
+$white: #ffffff;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-500: #6b7280;
+$gray-700: #374151;
+$green-500: #22c55e;
+$yellow-400: #facc15;
+$red-50: #fef2f2;
+$red-100: #fee2e2;
+$red-600: #dc2626;
+$green-50: #f0fdf4;
+$green-100: #dcfce7;
+$green-600: #16a34a;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin transition {
+  transition: all 0.3s ease;
+}
+
+.returned-books-wrapper {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, $gray-100, $white);
+}
+
+.returned-books-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: $white;
+  border-radius: 1.5rem;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 2.5rem;
+  animation: slideUp 0.5s ease-out;
+}
+
+.returned-books-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.returned-books-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $gray-700;
+  margin-bottom: 0.5rem;
+}
+
+.returned-books-subtitle {
+  color: $gray-500;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.alert {
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.4s ease-out;
+
+  p {
+    margin: 0;
+  }
+
+  &.alert-danger {
+    background-color: $red-50;
+    border: 1px solid $red-100;
+    color: $red-600;
+  }
+
+  &.alert-success {
+    background-color: $green-50;
+    border: 1px solid $green-100;
+    color: $green-600;
+  }
+}
+
+.table-responsive {
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  animation: fadeIn 0.6s ease-out 0.2s backwards;
+}
+
+.books-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid $gray-200;
+    white-space: nowrap;
+    
+    &:first-child {
+      padding-left: 1.5rem;
+    }
+    
+    &:last-child {
+      padding-right: 1.5rem;
+    }
+  }
+
+  th {
+    background-color: $gray-50;
+    font-weight: 600;
+    color: $gray-700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+
+  tr {
+    @include transition;
+
+    &:hover {
+      background-color: $gray-50;
+    }
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      color: $yellow-400;
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
   cursor: pointer;
+  border-radius: 0.5rem;
+  @include transition;
+  color: $gray-500;
+
+  &:hover {
+    background-color: $gray-100;
+  }
+
+  &.returned {
+    color: $primary;
+  }
+
+  &.approve-btn {
+    &:hover {
+      color: $green-500;
+      background-color: $green-50;
+    }
+
+    &.approved {
+      color: $green-500;
+    }
+  }
+}
+
+.pagination-container {
+  @include flex-center;
+  margin-top: 2rem;
+  animation: fadeIn 0.6s ease-out 0.3s backwards;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .page-item {
+    .page-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 2px solid $gray-200;
+      border-radius: 0.75rem;
+      background-color: $white;
+      color: $gray-700;
+      font-weight: 600;
+      cursor: pointer;
+      @include transition;
+
+      &:hover:not(:disabled) {
+        border-color: $primary;
+        color: $primary;
+      }
+
+      &.active {
+        background-color: $primary;
+        border-color: $primary;
+        color: $white;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .returned-books-container {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .returned-books-wrapper {
+    padding: 1.5rem;
+  }
+
+  .returned-books-title {
+    font-size: 2rem;
+  }
+
+  .returned-books-subtitle {
+    font-size: 1rem;
+  }
+
+  .books-table {
+    th, td {
+      padding: 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .returned-books-wrapper {
+    padding: 1rem;
+  }
+
+  .returned-books-container {
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .returned-books-title {
+    font-size: 1.75rem;
+  }
+
+  .pagination {
+    gap: 0.25rem;
+
+    .page-item .page-link {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.875rem;
+    }
+  }
 }

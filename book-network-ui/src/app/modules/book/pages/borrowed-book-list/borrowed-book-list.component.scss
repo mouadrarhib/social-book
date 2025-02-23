@@ -1,3 +1,493 @@
-i {
+// Variables
+$primary: #2563eb;
+$primary-dark: #1d4ed8;
+$success: #22c55e;
+$success-dark: #16a34a;
+$danger: #dc2626;
+$danger-dark: #b91c1c;
+$white: #ffffff;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-500: #6b7280;
+$gray-700: #374151;
+$yellow-400: #facc15;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin transition {
+  transition: all 0.3s ease;
+}
+
+.borrowed-books-wrapper {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, $gray-100, $white);
+}
+
+.borrowed-books-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: $white;
+  border-radius: 1.5rem;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 2.5rem;
+  animation: slideUp 0.5s ease-out;
+}
+
+.borrowed-books-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.borrowed-books-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $gray-700;
+  margin-bottom: 0.5rem;
+}
+
+.borrowed-books-subtitle {
+  color: $gray-500;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+// Return Form Section
+.return-form-section {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.return-form-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.return-form-title {
+  font-size: 1.8rem;
+  color: $gray-700;
+  font-weight: 600;
+}
+
+.book-details {
+  background-color: $gray-50;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid $gray-200;
+
+  &:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.detail-label {
+  width: 100px;
+  font-weight: 600;
+  color: $gray-700;
+}
+
+.detail-value {
+  flex: 1;
+  color: $gray-500;
+}
+
+.return-form {
+  background-color: $white;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.rating-section {
+  margin-bottom: 2rem;
+}
+
+.rating-slider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.range-input {
+  flex: 1;
+  height: 6px;
+  background-color: $gray-200;
+  border-radius: 1rem;
+  appearance: none;
+  outline: none;
+  
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: $primary;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.rating-value {
+  min-width: 2rem;
+  text-align: center;
+  font-weight: 600;
+  color: $gray-700;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: $gray-700;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.875rem;
+  border: 2px solid $gray-200;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background-color: $gray-50;
+  resize: vertical;
+  min-height: 120px;
+  @include transition;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    background-color: $white;
+    box-shadow: 0 0 0 4px rgba($primary, 0.1);
+  }
+
+  &::placeholder {
+    color: $gray-500;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
+  @include transition;
+
+  i {
+    font-size: 1rem;
+  }
+
+  &.primary {
+    background-color: $primary;
+    color: $white;
+
+    &:hover {
+      background-color: $primary-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($primary, 0.25);
+    }
+  }
+
+  &.success {
+    background-color: $success;
+    color: $white;
+
+    &:hover {
+      background-color: $success-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($success, 0.25);
+    }
+  }
+
+  &.danger {
+    background-color: $white;
+    color: $danger;
+    border: 2px solid $danger;
+
+    &:hover {
+      background-color: $danger;
+      color: $white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($danger, 0.25);
+    }
+  }
+}
+
+// Books Table
+.table-responsive {
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  animation: fadeIn 0.6s ease-out 0.2s backwards;
+}
+
+.books-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid $gray-200;
+    white-space: nowrap;
+    
+    &:first-child {
+      padding-left: 1.5rem;
+    }
+    
+    &:last-child {
+      padding-right: 1.5rem;
+    }
+  }
+
+  th {
+    background-color: $gray-50;
+    font-weight: 600;
+    color: $gray-700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+
+  tr {
+    @include transition;
+
+    &:hover {
+      background-color: $gray-50;
+    }
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      color: $yellow-400;
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  @include transition;
+  color: $gray-500;
+
+  &:hover {
+    background-color: $gray-100;
+  }
+
+  &.returned {
+    color: $primary;
+  }
+
+  &.approve-btn {
+    &:hover {
+      color: $success;
+      background-color: rgba($success, 0.1);
+    }
+
+    &.approved {
+      color: $success;
+    }
+  }
+}
+
+.pagination-container {
+  @include flex-center;
+  margin-top: 2rem;
+  animation: fadeIn 0.6s ease-out 0.3s backwards;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .page-item {
+    .page-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 2px solid $gray-200;
+      border-radius: 0.75rem;
+      background-color: $white;
+      color: $gray-700;
+      font-weight: 600;
+      cursor: pointer;
+      @include transition;
+
+      &:hover:not(:disabled) {
+        border-color: $primary;
+        color: $primary;
+      }
+
+      &.active {
+        background-color: $primary;
+        border-color: $primary;
+        color: $white;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .borrowed-books-container {
+    padding: 2rem;
+  }
+
+  .return-form-section {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .borrowed-books-wrapper {
+    padding: 1.5rem;
+  }
+
+  .borrowed-books-title {
+    font-size: 2rem;
+  }
+
+  .borrowed-books-subtitle {
+    font-size: 1rem;
+  }
+
+  .books-table {
+    th, td {
+      padding: 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .action-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .borrowed-books-wrapper {
+    padding: 1rem;
+  }
+
+  .borrowed-books-container {
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .borrowed-books-title {
+    font-size: 1.75rem;
+  }
+
+  .return-form-title {
+    font-size: 1.5rem;
+  }
+
+  .book-details {
+    padding: 1rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .detail-label {
+    width: 100%;
+  }
+
+  .pagination {
+    gap: 0.25rem;
+
+    .page-item .page-link {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.875rem;
+    }
+  }
 }
